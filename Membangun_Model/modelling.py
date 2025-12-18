@@ -9,7 +9,6 @@ from sklearn.metrics import accuracy_score, classification_report
 mlflow.set_experiment("Telco_Churn_Basic")
 
 def train_basic_model():
-    print("Memulai Training Model (Basic)...")
 
     # 1. Load Data
     try:
@@ -45,7 +44,6 @@ def train_basic_model():
         print(f"Accuracy: {acc:.4f}")
         print("\nClassification Report:")
         print(classification_report(y_test, y_pred))
-        print(f"\nCek hasil lengkap di MLflow UI (http://127.0.0.1:5000)")
 
 if __name__ == "__main__":
     train_basic_model()
