@@ -26,9 +26,9 @@ jobs:
 
     - name: Run MLflow Project
       run: |
-        # PENTING: Kita harus masuk ke folder Workflow-CI dulu
         cd Workflow-CI/MLProject
-        mlflow run . --no-conda
+        # Ganti --no-conda dengan --env-manager=local
+        mlflow run . --env-manager=local
 
     - name: Archive Production Artifacts
       uses: actions/upload-artifact@v4
