@@ -6,6 +6,7 @@ def automate_preprocessing(raw_path, output_path):
     """
     Fungsi preprocessing otomatis untuk dataset Telco Customer Churn.
     """
+    
     # 1. Load Data
     if not os.path.exists(raw_path):
         raise FileNotFoundError(f"File {raw_path} tidak ditemukan!")
@@ -13,6 +14,7 @@ def automate_preprocessing(raw_path, output_path):
     df = pd.read_csv(raw_path)
     
     # 2. Cleaning Data
+    # Ubah TotalCharges jadi angka, handle error jika ada spasi kosong
     df['TotalCharges'] = pd.to_numeric(df['TotalCharges'], errors='coerce')
     
     # Hapus baris NaN 
@@ -31,15 +33,14 @@ def automate_preprocessing(raw_path, output_path):
     
     bool_cols = df_processed.select_dtypes(include=['bool']).columns
     if len(bool_cols) > 0:
-        print(f"⚠️ Mengonversi {len(bool_cols)} kolom Boolean menjadi Angka (0/1)...")
+        print(f"Mengonversi {len(bool_cols)} kolom Boolean menjadi Angka (0/1)...")
         df_processed[bool_cols] = df_processed[bool_cols].astype(int)
-    # -----------------------------------------------------------
+    
     
     # 5. Scaling Fitur Numerik
     scaler = StandardScaler()
     numeric_cols = ['tenure', 'MonthlyCharges', 'TotalCharges']
     
-    # Pastikan kolom numerik ada sebelum scaling
     for col in numeric_cols:
         if col in df_processed.columns:
             # Gunakan .loc untuk menghindari SettingWithCopyWarning

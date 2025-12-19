@@ -1,0 +1,15 @@
+artifact_uri: file:///E:/KULIAH/Studi%20Independen/Membangun%20Sistem%20Machine%20Learning/Submission/SMSML_Reyhan%20Arifandi/Membangun_Model/mlruns/785041784644113737/7d838a7f510b45b7b699e28fdfba6bd2/artifacts
+end_time: 1766040414764
+entry_point_name: ''
+experiment_id: '785041784644113737'
+lifecycle_stage: active
+run_id: 7d838a7f510b45b7b699e28fdfba6bd2
+run_name: Baseline_RF_Default
+run_uuid: 7d838a7f510b45b7b699e28fdfba6bd2
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1766040405344
+status: 3
+tags: []
+user_id: Reyhan-pc

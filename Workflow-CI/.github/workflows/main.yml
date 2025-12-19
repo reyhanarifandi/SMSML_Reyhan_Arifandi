@@ -1,0 +1,39 @@
+name: Telco Churn CI Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-and-train:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pandas==2.2.2 numpy==1.26.4 scikit-learn==1.5.2 mlflow==2.19.0
+
+    - name: Run MLflow Project
+      run: |
+        cd MLProject
+        mlflow run . --no-conda
+
+    # Syarat Skilled: Simpan Artefak Model di GitHub
+    - name: Archive Production Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: ml-model-artifacts
+        path: |
+          MLProject/mlruns/
+        retention-days: 5
